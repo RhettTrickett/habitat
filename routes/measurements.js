@@ -6,6 +6,8 @@ var measurements = require('../controllers/measureControllers');
 
 router.get('/latest/', basicAuth, measurements.getLatestMeasurement);
 
-router.post('/', basicAuth, measurements.postNewMeasurement);
+//router.post('/', basicAuth, measurements.postNewMeasurement);
+
+router.post('/', measurements.postNewMeasurement);
 
 module.exports = router;

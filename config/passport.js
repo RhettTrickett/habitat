@@ -9,6 +9,8 @@ module.exports = passport.use('basic', new BasicStrategy((username, password, do
       return done(err);
 
     if(result.rows.length > 0) {
+      console.log(username);
+      console.log(password);
       const user = result.rows[0]
       bcrypt.compare(password, user.password, function(err, res) {
         if(res) {
