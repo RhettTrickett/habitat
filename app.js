@@ -10,8 +10,8 @@ var networkUtil = require('./utils/networkUtil');
 
 // Include routes
 var indexRouter = require('./routes/index');
-var measurementsRouter = require('./routes/measurements');
-var feedsRouter = require('./routes/feeds');
+var dataRouter = require('./routes/data');
+var manageRouter = require('./routes/manage');
 
 
 var app = express()
@@ -26,8 +26,10 @@ app.use(passport.initialize())
 
 // Load routes
 app.use('/', indexRouter);
-app.use('/measurements', measurementsRouter);
-app.use('/feeds',feedsRouter);
+app.use('/data', dataRouter);
+app.use('/manage',manageRouter);
+
+
 
 app.listen(port, () => {
     var ip = networkUtil.getIp();
