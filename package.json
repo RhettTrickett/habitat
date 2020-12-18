@@ -5,11 +5,11 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "setup": "node --no-warnings config/setup/createEnvFile.js && node --no-warnings config/setup/createAdmin.js && node --no-warnings config/setup/createSensor.js && node config/setup/setupWelcome.js",
+    "setup": "node --no-warnings config/setup/createEnvFile.js && node --no-warnings config/setup/createAdmin.js && node --no-warnings config/setup/createFeed.js && node config/setup/setupWelcome.js",
     "setupdb": "node --no-warnings config/setup/createEnvFile.js && node config/setup/setupWelcome.js",
     "createdb": "node --no-warnings config/setup/createDatabase.js",
     "createadmin": "node --no-warnings config/setup/createAdmin.js",
-    "createsensor": "node --no-warnings config/setup/createSensor.js"
+    "createfeed": "node --no-warnings config/setup/createFeed.js"
   },
   "author": "Rhett Trickett",
   "license": "MIT",
