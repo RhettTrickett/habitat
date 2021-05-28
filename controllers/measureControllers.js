@@ -6,7 +6,7 @@ exports.getMeasurements = function(req, res, next) {
     const validated = getMeasureSchema.validate(params)
 
     if (validated.error) {
-        return res.status(400).json({'error': validated.error.details.message})
+        return res.status(400).json({'error': validated.error.details[0].message})
     }
 
     // Do not let users pass values into query directly
