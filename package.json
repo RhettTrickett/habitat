@@ -1,0 +1,30 @@
+{
+  "name": "habitat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "setup": "node --no-warnings config/setup/createEnvFile.js && node --no-warnings config/setup/createAdmin.js && node --no-warnings config/setup/createSensor.js && node config/setup/setupWelcome.js",
+    "setupdb": "node --no-warnings config/setup/createEnvFile.js && node config/setup/setupWelcome.js",
+    "createdb": "node --no-warnings config/setup/createDatabase.js",
+    "createadmin": "node --no-warnings config/setup/createAdmin.js",
+    "createsensor": "node --no-warnings config/setup/createSensor.js"
+  },
+  "author": "Rhett Trickett",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "hap-nodejs": "^0.7.7",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.1",
+    "passport-http": "^0.3.0",
+    "pg": "^8.3.0",
+    "prompt": "^1.0.0"
+  }
+}
