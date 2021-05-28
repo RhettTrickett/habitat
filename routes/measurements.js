@@ -4,8 +4,8 @@ var passport = require('passport')
 var basicAuth = passport.authenticate('basic', { session: false })
 var measurements = require('../controllers/measureControllers');
 
-router.get('/latest/',  measurements.getLatestMeasurement);
+router.get('/',  measurements.getMeasurements);
 
-router.post('/', basicAuth, measurements.postNewMeasurement);
+router.post('/', basicAuth, measurements.postMeasurement);
 
 module.exports = router;

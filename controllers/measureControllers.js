@@ -1,6 +1,6 @@
 var db = require('../config/database');
 
-exports.getLatestMeasurement = function(req, res, next) {
+exports.getMeasurements = function(req, res, next) {
     const limit = req.params.limit < 20 ? req.params.limit : 20;
     const order = req.params.order === "ASC" ? "ASC" : "DESC";
 
@@ -23,7 +23,7 @@ exports.getLatestTemp = function(req, res, next) {
 }
 
 
-exports.postNewMeasurement = function(req, res, next) {
+exports.postMeasurement = function(req, res, next) {
 
     // Extract into variables from request body
     var { sensor_id, celcius, humidity } = req.body;
