@@ -14,7 +14,7 @@ var measurementsRouter = require('./routes/measurements');
 
 
 var app = express()
-var port = 8000 // process.env['PORT']
+var port = process.env['PORT']
 
 app.use(logger('dev'));
 app.use(express.json());

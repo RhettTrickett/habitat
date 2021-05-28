@@ -21,6 +21,7 @@
     "express": "~4.16.1",
     "hap-nodejs": "^0.7.7",
     "http-errors": "~1.6.3",
+    "joi": "^17.4.0",
     "morgan": "~1.9.1",
     "passport": "^0.4.1",
     "passport-http": "^0.3.0",

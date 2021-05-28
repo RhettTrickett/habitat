@@ -1,16 +1,25 @@
 var db = require('../config/database');
+const { getMeasureSchema, postMeasureSchema } = require('../schemas/measurements')
 
 exports.getMeasurements = function(req, res, next) {
-    const limit = req.params.limit < 20 ? req.params.limit : 20;
-    const order = req.params.order === "ASC" ? "ASC" : "DESC";
+    const params =  { limit, order, sensor_id } = req.query
+    const validated = getMeasureSchema.validate(params)
 
-    const selectSQL = `SELECT * FROM measurements ORDER BY $1 LIMIT $2;`
-    const params = [order, limit];
+    if (validated.error) {
+        return res.status(400).json({'error': validated.error.details.message})
+    }
 
-    db.query(selectSQL, params, (error, results) => {
-        if (error)
-            throw error;
-        res.status(200).json(results.rows);
+    // Do not let users pass values into query directly
+    params.order = params.order?.toUpperCase() === 'ASC' ? 'ASC' : 'DESC';
+    params.limit = params.limit ? params.limit : 20;
+    const query = `SELECT * FROM measurements ORDER BY id ${params.order} LIMIT $1;`
+
+    db.query(query, [params.limit], (error, results) => {
+        if (error) {
+            console.log(error)
+           return res.status(500).json({'error': 'a server error occurred'});
+        }
+        return res.status(200).json(results.rows);
     });
 }
 
