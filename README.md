@@ -1,6 +1,6 @@
 # Habitat
 
-Habitat is a light-weight web server with APIs to POST or GET temperature and humidity readings from sensors. It’s built with Express and uses PostgreSQL as a database.
+Habitat is a light-weight web server with APIs to POST and GET sensor data. It’s built with Express and uses PostgreSQL as a database.
 
 ## Installation
 
@@ -62,17 +62,13 @@ $ npm run createsensor
 
 ## API
 
-### Authentication
-
-_**WARNING: Habitat uses Basic Authentication over HTTP**. Do not use Habitat on publically accessible networks, it is not secure. Using Basic Authentication over HTTP means that authentication credentials are not encrypted when requests are sent over the network, and so they may be intercepted by others on the network. For now, you should only use Habitat on your private Wi-Fi network where you are certain that there are no malicious users. Support for more secure authentication will be added in subsequent versions._
-
 ### Hostname
 
-The examples below use the `localhost` hostname when making requests. This will work if you are making requests from the same device you are running Habitat on. However, if you’re making a request from one \(client\) device to another \(server\) on the private network, the request must be made to the server’s private IP address within the network. 
+The examples below use the `localhost` hostname when making requests. This will work if you are making requests from the same device you are running Habitat on. However, if you’re making a request from one \(client\) device to another \(server\) on a private network, the request must be made to the server’s IP address within the network. 
 
-You can determine the private IP address for a device on a network by running a command from its command-line: On Linux run `hostname -I`. On Mac OS, run `ipconfig getifaddr en`. On Windows, run `ipconfig`  and look for the value labelled IPv4 address. 
+You can determine the IP address for a device on a network by running a command from its command-line: On Linux run `hostname -I`. On Mac OS, run `ipconfig getifaddr en`. On Windows, run `ipconfig`  and look for the value labelled IPv4 address. 
 
-Once you have this, replace `localhost` in the request examples below with the IP address of the target device. So `http://localhost:3000/measurements/latest/` would become `http://<ip_address>:3000/measurements/latest/`.
+Once you have this, replace `localhost` in the request examples below with the IP address of the target device. So `http://localhost:3000/measurements/` would become `http://<ip_address>:3000/measurements/`.
 
 ### Record a sensor reading
 
@@ -86,7 +82,7 @@ To record a sensor reading you can make a POST request with Basic Authentication
 }
 ```
 
-`celcius` and `humidity` measurements are supported out of the box, you can also add support for more measurement types. See **Custom measurment fields** lower down for details.
+`celcius` and `humidity` measurements are supported out of the box, you can also add support for more measurement types. See **Custom measurement fields** lower down for details.
 
 You must include a `sensor_id` field for a valid sensor in the database when recording measurements. You can create a new sensor by running `npm run createsensor` from the command-line in the root of the project.
 
@@ -106,8 +102,10 @@ You can get the latest reading from the database by making a GET request with Ba
 
 ```shell
 $ curl -u username:password \
-        http://localhost:3000/measurements/latest/ | json_pp
+        http://localhost:3000/measurements/ | json_pp
 ```
+
+You can also use `limit` and `order` query parameters like this: `?limit=10&order=asc`
 
 ‌
 
@@ -140,6 +138,6 @@ Now you can include a fahrenheit in your POST requests:
 
 ## Contributions
 
-Any contributions are welcome.
+This is currently a simple project with much that can be improved. Any contributions are welcome.
 
 ‌
