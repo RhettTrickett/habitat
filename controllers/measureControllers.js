@@ -23,6 +23,7 @@ exports.getMeasurements = function(req, res, next) {
     });
 }
 
+
 exports.getLatestTemp = function(req, res, next) {
     db.query('SELECT * FROM measurements ORDER BY created DESC LIMIT 1;', (error, results) => {
         if (error)
